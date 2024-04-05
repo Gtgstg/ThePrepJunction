@@ -1,15 +1,15 @@
-import React, { useState,createRef } from "react";
+import React, { useState,createRef, useEffect } from "react";
 import { styled } from '@mui/system';
 import {
   Playlist,
   goToNextVideo,
   goToPreviousVideo
 } from "reactjs-video-playlist-player";
+import axios from 'axios';
 const VideoContainer = styled('div')({
   width: '60%',
   margin: '0 auto',
 });
-
 const PlaylistQueue = styled('div')({
   boxShadow: '0px 0px 1px white',
   display: 'flex',
@@ -42,41 +42,33 @@ const Thumbnail = styled('img')({
 });
 
 function CourseDetailPage() {
-  const [videoList, setVideoList] = useState([
-    {
-      thumbnail: "https://picsum.photos/200",
-      url:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      imgAlt: "Image 1 not found"
-    },
-    {
-      thumbnail: "https://picsum.photos/200",
-      url:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-      imgAlt: "Image 2 not found"
-    },
-    {
-      thumbnail: "https://picsum.photos/200",
-      url:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      imgAlt: "Image 3 not found"
-    },
-    {
-      thumbnail: "https://picsum.photos/200",
-      url:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      imgAlt: "Image 4 not found"
-    },
-    {
-      thumbnail: "https://picsum.photos/200",
-      url:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-      imgAlt: "Image 5 not found"
-    }
-  ]);
-
+  const [videoList, setVideoList] = useState([]);
   const [currentVideo, setCurrentVideo] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const vidRef = createRef(null);
+
+  useEffect(() => {
+    // Fetch courses from API
+    axios.get('http://localhost:3600/api/courses')
+      .then((response) => {
+        setVideoList(response.data);
+        setLoading(false); // Update loading state
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false); // Update loading state
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   const params = {
     videos: videoList,
@@ -88,61 +80,81 @@ function CourseDetailPage() {
     vidRef: vidRef
   };
   const styles = `
+  .video-container-styles {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: calc(100vh - 80px); /* Subtract header height */
+  }
+
+  .video-styles {
+    width: 80%; /* Video width takes 80% */
+    max-height: 100%;
+    object-fit: cover;
+  }
+
+  .playlist-queue-styles {
+    width: 20%; /* Playlist queue width takes 20% */
+    box-shadow: 0px 0px 1px white;
+    overflow-y: auto; /* Making playlist queue scrollable */
+    background-color: #212836;
+  }
+
+  .playlist-queue-item-styles {
+    margin: 5px;
+    cursor: pointer;
+    min-width: 100px; /* Adjust dimensions as needed */
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid transparent;
+    text-align: center;
+    color: white; /* Adjust text color as needed */
+  }
+
+  .thumbnail-styles {
+    width: 80%; /* Adjust dimensions as needed */
+    height: 80%;
+    object-fit: cover;
+  }
+
+  .title {
+    margin-top: 5px; /* Adjust spacing as needed */
+    font-size: 14px; /* Adjust font size as needed */
+  }
+
+  .current-playing-video-styles {
+    box-shadow: 0px 0px 2px white;
+    transition: 0.2s;
+  }
+
+  @media screen and (max-width: 549px) {
     .video-container-styles {
-      display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
-      height: calc(100vh - 80px); /* Subtract header height */
-    }
-
-    .playlist-queue-styles {
-      box-shadow: 0px 0px 1px white;
-      display: flex;
       align-items: center;
-      overflow-x: auto;
-      background-color: #212836;
     }
-
-    .playlist-queue-item-styles {
-      margin: 5px;
-      cursor: pointer;
-      min-width: 60px;
-      max-width: 60px;
-      min-height: 60px;
-      max-height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 4px solid transparent;
-    }
-
-    .current-playing-video-styles {
-      box-shadow: 0px 0px 2px white;
-      transition: 0.2s;
-    }
-
-    .thumbnail-styles {
-      width: 100%;
-      height: 100%;
-    }
-
     .video-styles {
       width: 100%;
-      height: 500px;
-      object-fit: cover;
+      height: auto;
     }
+    .playlist-queue-styles {
+      width: 100%;
+      margin-top: 10px; /* Adjust margin as needed */
+    }
+  }
+`;
 
-    @media screen and (max-width: 549px) {
-      .video-container-styles {
-        width: 100%;
-      }
-    }
-  `;
+
+
 
   return (
     <div>
       <style>{styles}</style>
+      <h3 className="title">{videoList[currentVideo].title}</h3>
       <div>
       <Playlist playlistParams={params} />
       </div>

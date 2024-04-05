@@ -7,6 +7,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
+const quizRoutes = require('./routes/quizRoutes');
 const videoUploadRoutes = require('./routes/video');
 const videoStreamRoutes = require('./routes/stream');
 const userRoutes = require('./routes/users');
@@ -43,6 +44,7 @@ app.use(bodyParser.json({limit: '50mb', extended: true}))
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/courses', courseRoutes);
+app.use('/api/quizs', quizRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/video', videoUploadRoutes);
 app.use('/api/stream', videoStreamRoutes);

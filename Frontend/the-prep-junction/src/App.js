@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CourseList from './components/course/CourseList';
 import CourseForm from './components/course/CourseForm';
+import QuizForm from './components/quiz/QuizForm';
 import SearchForm from './components/search/SearchForm';
 import RecommendationList from './components/recommendation/RecommendationList';
 import LoginButton from './components/button/LoginButton';
@@ -30,6 +31,8 @@ const App = () => {
         <Route path="/courses" element={<CoursePage/>}/>
         <Route path="/course/:id" element={<CourseDetailPage/>} />
         <Route path="/stream" element={<Stream/>} />
+        <Route path="/addCourse" element={<CourseForm/>} />
+        <Route path="/addQuiz" element={<QuizForm/>} />
         </Routes>
         <Footer />
       </div>
