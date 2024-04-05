@@ -1,0 +1,72 @@
+{
+  "1": [
+    {
+      "id": 1,
+      "question": "What is 2 + 2?",
+      "options": [
+        {"id": "A", "text": "3"},
+        {"id": "B", "text": "4"},
+        {"id": "C", "text": "5"}
+      ],
+      "correctAnswerId": "B",
+      "timeLimit": 30
+    },
+    {
+      "id": 2,
+      "question": "What is the capital of France?",
+      "options": [
+        {"id": "A", "text": "Paris"},
+        {"id": "B", "text": "London"},
+        {"id": "C", "text": "Berlin"}
+      ],
+      "correctAnswerId": "A",
+      "timeLimit": 60
+    },
+    {
+      "id": 3,
+      "question": "Who wrote 'To Kill a Mockingbird'?",
+      "options": [
+        {"id": "A", "text": "Harper Lee"},
+        {"id": "B", "text": "J.K. Rowling"},
+        {"id": "C", "text": "Stephen King"}
+      ],
+      "correctAnswerId": "A",
+      "timeLimit": 45
+    }
+  ],
+  "2": [
+    {
+      "id": 1,
+      "question": "What is the chemical symbol for water?",
+      "options": [
+        {"id": "A", "text": "H2O"},
+        {"id": "B", "text": "CO2"},
+        {"id": "C", "text": "O2"}
+      ],
+      "correctAnswerId": "A",
+      "timeLimit": 40
+    },
+    {
+      "id": 2,
+      "question": "Who painted the Mona Lisa?",
+      "options": [
+        {"id": "A", "text": "Leonardo da Vinci"},
+        {"id": "B", "text": "Pablo Picasso"},
+        {"id": "C", "text": "Vincent van Gogh"}
+      ],
+      "correctAnswerId": "A",
+      "timeLimit": 50
+    },
+    {
+      "id": 3,
+      "question": "What is the largest planet in our solar system?",
+      "options": [
+        {"id": "A", "text": "Jupiter"},
+        {"id": "B", "text": "Saturn"},
+        {"id": "C", "text": "Earth"}
+      ],
+      "correctAnswerId": "A",
+      "timeLimit": 55
+    }
+  ]
+}

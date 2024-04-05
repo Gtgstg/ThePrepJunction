@@ -1,66 +1,219 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Link } from '@mui/material';
-import { styled } from '@mui/system';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import IconButton from '@mui/material/IconButton';
+import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
-// Styled AppBar for the footer
-const FooterAppBar = styled(AppBar)({
-  backgroundColor: '#333',
-  color: '#fff',
-});
+import FacebookIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/X';
 
-// Styled Typography for the footer text
-const FooterText = styled(Typography)({
-  marginRight: '20px', // Adjust spacing if needed
-});
-
-const Footer = () => {
-  return (
-    <FooterAppBar position="static">
-      <Toolbar>
-        <FooterText variant="h6">
-        <img src="ThePrepJunction.png" alt="Logo" style={{ width: '150px' }} />
-        </FooterText>
-        <div>
-          <Typography variant="body1" className="brand-text">
-            The Prep Junction Pvt. Ltd.
-          </Typography>
-          <Typography variant="body2" className="address">
-            2nd Floor, Plot No. 4, Minarch Tower, Sector-44, Gurgaon, Haryana, India, 122003
-          </Typography>
-          <a href="mailto:support@theprepjunction.com" className="footer-link">support@theprepjunction.com</a>
-          <Typography variant="body2" className="footer-link">
-            Toll Free: <a href="tel:18002030577">1800 203 0577</a>
-          </Typography>
-          <Typography variant="body2">
-            Office Hours: 10 AM to 7 PM (all 7 days)
-          </Typography>
-        </div>
-        <div>
-          <Typography variant="h6" className="h4">Company</Typography>
-          <div className="category-item">
-            <Link href="/about-us" target="_self">About us</Link>
-            <Link href="/careers" target="_self">Careers</Link>
-            {/* Add more links */}
-          </div>
-        </div>
-        <div>
-          <Typography variant="h6" className="h4">Products</Typography>
-          <div className="category-item">
-            <Link href="/online-test-series" target="_self">Test Series</Link>
-            <Link href="/free-live-tests-and-quizzes" target="_self">Live Tests and Quizzes</Link>
-            {/* Add more links */}
-          </div>
-        </div>
-        <div>
-          <Typography variant="h6" className="h4">Our App</Typography>
-          <Link href="https://link.testbook.com/iosAppStore">
-            <img src="../../angular/assets/img/template-img/appstore.svg" alt="App Store" className="mb-4" />
-          </Link>
-          {/* Add more app links */}
-        </div>
-      </Toolbar>
-    </FooterAppBar>
-  );
+const logoStyle = {
+  width: '300px',
+  height: 'auto',
 };
 
-export default Footer;
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" mt={1}>
+      {'Copyright © '}
+      <Link href="https://mui.com/">ThePrepJunction&nbsp;</Link>
+      {new Date().getFullYear()}
+    </Typography>
+  );
+}
+
+export default function Footer() {
+  return (
+    <Container
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: { xs: 4, sm: 8 },
+        py: { xs: 8, sm: 10 },
+        textAlign: { sm: 'center', md: 'left' },
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', sm: 'row' },
+          width: '100%',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 4,
+            minWidth: { xs: '100%', sm: '60%' },
+          }}
+        >
+          <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
+            <Box sx={{ ml: '-15px' }}>
+              <img
+                src={
+                  'logo.PNG'
+                }
+                style={logoStyle}
+                alt="logo of sitemark"
+              />
+            </Box>
+            <Typography variant="body2" fontWeight={600} gutterBottom>
+              Newsletter
+            </Typography>
+            <Typography variant="body2" color="text.secondary" mb={2}>
+              Subscribe to our newsletter for weekly updates and promotions.
+            </Typography>
+            <Stack direction="row" spacing={1} useFlexGap>
+              <TextField
+                id="outlined-basic"
+                hiddenLabel
+                size="small"
+                variant="outlined"
+                fullWidth
+                aria-label="Enter your email address"
+                placeholder="Your email address"
+                inputProps={{
+                  autoComplete: 'off'
+                }}
+              />
+              <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
+                Subscribe
+              </Button>
+            </Stack>
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          <Typography variant="body2" fontWeight={600}>
+            Product
+          </Typography>
+          <Link color="text.secondary" href="#">
+            Features
+          </Link>
+          <Link color="text.secondary" href="#">
+            Testimonials
+          </Link>
+          <Link color="text.secondary" href="#">
+            Highlights
+          </Link>
+          <Link color="text.secondary" href="#">
+            Pricing
+          </Link>
+          <Link color="text.secondary" href="#">
+            FAQs
+          </Link>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          <Typography variant="body2" fontWeight={600}>
+            Company
+          </Typography>
+          <Link color="text.secondary" href="#">
+            About us
+          </Link>
+          <Link color="text.secondary" href="#">
+            Careers
+          </Link>
+          <Link color="text.secondary" href="#">
+            Press
+          </Link>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'flex' },
+            flexDirection: 'column',
+            gap: 1,
+          }}
+        >
+          <Typography variant="body2" fontWeight={600}>
+            Legal
+          </Typography>
+          <Link color="text.secondary" href="#">
+            Terms
+          </Link>
+          <Link color="text.secondary" href="#">
+            Privacy
+          </Link>
+          <Link color="text.secondary" href="#">
+            Contact
+          </Link>
+        </Box>
+      </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          pt: { xs: 4, sm: 8 },
+          width: '100%',
+          borderTop: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <div>
+          <Link color="text.secondary" href="#">
+            Privacy Policy
+          </Link>
+          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
+            &nbsp;•&nbsp;
+          </Typography>
+          <Link color="text.secondary" href="#">
+            Terms of Service
+          </Link>
+          <Copyright />
+        </div>
+        <Stack
+          direction="row"
+          justifyContent="left"
+          spacing={1}
+          useFlexGap
+          sx={{
+            color: 'text.secondary',
+          }}
+        >
+          <IconButton
+            color="inherit"
+            href="https://github.com/mui"
+            aria-label="GitHub"
+            sx={{ alignSelf: 'center' }}
+          >
+            <FacebookIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            href="https://twitter.com/MaterialUI"
+            aria-label="X"
+            sx={{ alignSelf: 'center' }}
+          >
+            <TwitterIcon />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            href="https://www.linkedin.com/company/mui/"
+            aria-label="LinkedIn"
+            sx={{ alignSelf: 'center' }}
+          >
+            <LinkedInIcon />
+          </IconButton>
+        </Stack>
+      </Box>
+    </Container>
+  );
+}

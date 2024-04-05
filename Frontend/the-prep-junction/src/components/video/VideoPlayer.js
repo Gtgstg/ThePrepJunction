@@ -1,15 +1,23 @@
+// VideoPlayer.js
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Card, CardMedia, CardContent, Typography } from '@mui/material';
 
-const VideoPlayer = ({ videoUrl }) => {
+function VideoPlayer({ video }) {
   return (
-    <Container>
-      <video controls width="100%" height="auto">
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </Container>
+    <Card>
+      <CardMedia
+        component="video"
+        src={video.url}
+        autoPlay
+        loop
+        controls
+        height="360"
+      />
+      <CardContent>
+        <Typography variant="h5">{video.title}</Typography>
+      </CardContent>
+    </Card>
   );
-};
+}
 
 export default VideoPlayer;

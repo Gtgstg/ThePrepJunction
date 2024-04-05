@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CourseList from './components/course/CourseList';
-import CourseDetails from './components/course/CourseDetails';
 import CourseForm from './components/course/CourseForm';
 import SearchForm from './components/search/SearchForm';
 import RecommendationList from './components/recommendation/RecommendationList';
@@ -12,6 +11,11 @@ import store from './store';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Home from './components/body/Home';
+import SignIn from './components/sign-in/SignIn';
+import QuizPage from './components/quiz/QuizPage';
+import CoursePage from './components/course/CoursePage';
+import CourseDetailPage from './components/course/CourseDetailPage';
+import Stream from './components/stream/Stream';
 
 const App = () => {
   return (
@@ -21,6 +25,11 @@ const App = () => {
         <Header />
         <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path='/sign-in' element={<SignIn/>}/>
+        <Route path="/quiz/:id" element={<QuizPage/>} />
+        <Route path="/courses" element={<CoursePage/>}/>
+        <Route path="/course/:id" element={<CourseDetailPage/>} />
+        <Route path="/stream" element={<Stream/>} />
         </Routes>
         <Footer />
       </div>

@@ -1,0 +1,25 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "name": "Course 1",
+        "logo": "logo192.png",
+        "videos": [
+          { "id": 1, "title": "Video 1", "url": "path/to/course1/video1.mp4" },
+          { "id": 2, "title": "Video 2", "url": "path/to/course1/video2.mp4" },
+          { "id": 3, "title": "Video 3", "url": "path/to/course1/video3.mp4" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Course 2",
+        "logo": "logo512.png",
+        "videos": [
+          { "id": 4, "title": "Video 4", "url": "path/to/course2/video4.mp4" },
+          { "id": 5, "title": "Video 5", "url": "path/to/course2/video5.mp4" },
+          { "id": 6, "title": "Video 6", "url": "path/to/course2/video6.mp4" }
+        ]
+      }
+    ]
+  }
+  
