@@ -6,6 +6,7 @@ import GovtExamsCalendarPage from '../upcomingResult/GovtExamsCalendarPage';
 import Banner from './Banner';
 import Highlights from './Highlights';
 import PopularExam from './PopularExam';
+import Questions from "../questions/questions";
 
 const Home = () => {
   return (

@@ -12,7 +12,7 @@ const ExamCard = ({ imgSrc, altText, title }) => (
 
 const PopularExam = () => {
   return (
-    <Container maxWidth="lg" style={{ backgroundColor: '#F6F8F9', padding: '20px' }}>
+    <Container maxWidth="lg" style={{  padding: '20px' }}>
       <Typography variant="h2" align="center" gutterBottom>Popular Exams</Typography>
       <Typography align="center" gutterBottom>
         Get exam-ready with concepts, questions and study notes as per the latest pattern

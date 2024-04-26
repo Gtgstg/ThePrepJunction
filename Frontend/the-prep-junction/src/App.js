@@ -17,6 +17,8 @@ import QuizPage from './components/quiz/QuizPage';
 import CoursePage from './components/course/CoursePage';
 import CourseDetailPage from './components/course/CourseDetailPage';
 import Stream from './components/stream/Stream';
+import Questions from "./components/questions/questions";
+import Mock from "./components/mock/mock";
 
 const App = () => {
   return (
@@ -33,6 +35,8 @@ const App = () => {
         <Route path="/stream" element={<Stream/>} />
         <Route path="/addCourse" element={<CourseForm/>} />
         <Route path="/addQuiz" element={<QuizForm/>} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/mock" element={<Mock />} />
         </Routes>
         <Footer />
       </div>

@@ -19,7 +19,7 @@ const logoStyle = {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
+    <Typography variant="body2"  mt={1}>
       {'Copyright © '}
       <Link href="https://mui.com/">ThePrepJunction&nbsp;</Link>
       {new Date().getFullYear()}
@@ -68,7 +68,7 @@ export default function Footer() {
             <Typography variant="body2" fontWeight={600} gutterBottom>
               Newsletter
             </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
+            <Typography variant="body2"  mb={2}>
               Subscribe to our newsletter for weekly updates and promotions.
             </Typography>
             <Stack direction="row" spacing={1} useFlexGap>
@@ -82,6 +82,9 @@ export default function Footer() {
                 placeholder="Your email address"
                 inputProps={{
                   autoComplete: 'off'
+                }}
+                sx={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.2)', // Example background color
                 }}
               />
               <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
@@ -100,19 +103,19 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Product
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Features
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Testimonials
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Highlights
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Pricing
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             FAQs
           </Link>
         </Box>
@@ -126,13 +129,13 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Company
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             About us
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Careers
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Press
           </Link>
         </Box>
@@ -146,13 +149,13 @@ export default function Footer() {
           <Typography variant="body2" fontWeight={600}>
             Legal
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Terms
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Privacy
           </Link>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Contact
           </Link>
         </Box>
@@ -168,13 +171,13 @@ export default function Footer() {
         }}
       >
         <div>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Privacy Policy
           </Link>
           <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
             &nbsp;•&nbsp;
           </Typography>
-          <Link color="text.secondary" href="#">
+          <Link  href="#">
             Terms of Service
           </Link>
           <Copyright />
@@ -184,9 +187,6 @@ export default function Footer() {
           justifyContent="left"
           spacing={1}
           useFlexGap
-          sx={{
-            color: 'text.secondary',
-          }}
         >
           <IconButton
             color="inherit"

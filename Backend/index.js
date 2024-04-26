@@ -12,6 +12,8 @@ const videoUploadRoutes = require('./routes/video');
 const videoStreamRoutes = require('./routes/stream');
 const userRoutes = require('./routes/users');
 const protectedRoutes = require('./routes/protected');
+const questionRoutes = require('./routes/questionRoutes');
+const mockTestRoutes = require('./routes/mockTestRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 
 // Middleware setup (body parser, CORS, etc.)
@@ -49,6 +51,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/video', videoUploadRoutes);
 app.use('/api/stream', videoStreamRoutes);
 app.use('/api/recommendations', recommendationRoutes);
+app.use('/api/questions', questionRoutes);
+app.use('/api/mock', mockTestRoutes);
 app.use('/protected', protectedRoutes);
 
 // Start the server
