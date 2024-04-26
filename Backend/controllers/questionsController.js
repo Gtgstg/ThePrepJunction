@@ -1,4 +1,4 @@
-const Question = require('../models/question');
+const Question = require('../models/Question');
 const Tag = require('../models/Tag'); 
 
 async function checkAndAddTags(tagNames) {
