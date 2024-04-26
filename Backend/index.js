@@ -17,9 +17,10 @@ const mockTestRoutes = require('./routes/mockTestRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 
 // Middleware setup (body parser, CORS, etc.)
-
+const mong = "mongodb+srv://thevishwajeet007:Prepjunction@123@cluster0.4yudzhl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mong_local = "mongodb://127.0.0.1/PrepJunction";
 // Connect to MongoDB
-mongoose.connect('mongodb://127.0.0.1/PrepJunction',{
+mongoose.connect(mong,{
     serverSelectionTimeoutMS: 5000,
     autoIndex: false, // Don't build indexes
     maxPoolSize: 10, // Maintain up to 10 socket connections
