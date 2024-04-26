@@ -12,12 +12,13 @@ const videoUploadRoutes = require('./routes/video');
 const videoStreamRoutes = require('./routes/stream');
 const userRoutes = require('./routes/users');
 const protectedRoutes = require('./routes/protected');
+const signRoutes = require('./routes/signRoutes');
 const questionRoutes = require('./routes/questionRoutes');
 const mockTestRoutes = require('./routes/mockTestRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 
 // Middleware setup (body parser, CORS, etc.)
-const mong = "mongodb+srv://thevishwajeet007:Prepjunction@123@cluster0.4yudzhl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const mong = "mongodb+srv://thevishwajeet007:PrepJunction007@prepjunction.wlf2lna.mongodb.net/?retryWrites=true&w=majority&appName=PrepJunction";
 const mong_local = "mongodb://127.0.0.1/PrepJunction";
 // Connect to MongoDB
 mongoose.connect(mong,{
@@ -55,6 +56,7 @@ app.use('/api/recommendations', recommendationRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/mock', mockTestRoutes);
 app.use('/protected', protectedRoutes);
+app.use('/api/sign', signRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3600;

@@ -15,6 +15,7 @@ import {
 const useStyles = {
     container: {
         padding: '16px',
+        marginTop: '100px',
     },
     form: {
         display: 'flex',
@@ -48,16 +49,16 @@ const Questions = () => {
             // }
             //formData.append('file', uploadedFile);
         }
-        // try {
-        //     await axios.post('http://localhost:3600/api/video/upload', uploadedFile, {
-        //         headers: {
-        //             'Content-Type': 'multipart/form-data'
-        //         }
-        //     });
-        //     alert('Video uploaded successfully');
-        // } catch (error) {
-        //     console.error('Error uploading video:', error);
-        // }
+        try {
+                // await axios.post('http://localhost:3600/api/video/upload', uploadedFile, {
+                //     headers: {
+                //         'Content-Type': 'multipart/form-data'
+                //     }
+                // });
+                // alert('Video uploaded successfully');
+        } catch (error) {
+            console.error('Error uploading video:', error);
+        }
         const response = await axios.post('http://localhost:3600/api/questions/add', {
             question,
             format,

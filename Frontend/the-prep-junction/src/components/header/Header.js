@@ -86,7 +86,7 @@ function Header() {
                             >
                                 <img
                                     src={
-                                        'logo.png'
+                                        '/logo.png'
                                     }
                                     style={logoStyle}
                                     alt="logo of sitemark"
@@ -150,7 +150,7 @@ function Header() {
                                     href="/sign-in"
                                     target="_blank"
                                 >
-                                    Sign in
+                                    Sign in/Sign up
                                 </Button>
                             </Box>
                         </Toolbar>

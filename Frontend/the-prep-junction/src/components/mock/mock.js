@@ -7,19 +7,20 @@ const Mock = () => {
     const [tagList, setTagList] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [selectedQuestions, setSelectedQuestions] = useState([]);
-    const [coursesList, setCoursesList] = useState([]);
-    const [newCourseName, setNewCourseName] = useState('');
-    const [showCreateCourseDialog, setShowCreateCourseDialog] = useState(false);
-    const [courseNameToAddMock, setCourseNameToAddMock] = useState('');
+    const [examsList, setExamsList] = useState([]);
+    const [newExamName, setNewExamName] = useState('');
+    const [showCreateExamDialog, setShowCreateExamDialog] = useState(false);
+    const [examNameToAddMock, setExamNameToAddMock] = useState('');
     const [newMockTestName, setNewMockTestName] = useState('');
 
     useEffect(() => {
         async function fetchData() {
             const tagsResponse = await axios.get('http://localhost:3600/api/questions/getAllTags');
-            setTagList(tagsResponse.data);
-            const coursesResponse = await axios.get('http://localhost:3600/api/mock/courses/getAllCourses');
-            setCoursesList(coursesResponse.data);
-            console.log(coursesList);
+            const tags  = tagsResponse.data.map(tag => tag.name);
+            setTagList(tags);
+            const examsResponse = await axios.get('http://localhost:3600/api/mock/exams/getAllExams');
+            setExamsList(examsResponse.data);
+            console.log(examsList);
         }
         fetchData();
     }, []);
@@ -30,6 +31,7 @@ const Mock = () => {
                 const questionResponse = await axios.post('http://localhost:3600/api/questions/getQuestionsForTags', {
                     tags: selectedTags
                 });
+                console.log(questionResponse.data);
                 setQuestionList(questionResponse.data);
             }
         }
@@ -49,39 +51,40 @@ const Mock = () => {
 
     const createMockTest = async () => {
         // Implement logic to create a mock test using selected questions
-        const response = await axios.post('http://localhost:3600/api/mock/courses/addMock', {
-            courseName: courseNameToAddMock,
+        const response = await axios.post('http://localhost:3600/api/mock/exams/addMock', {
+            examName: examNameToAddMock,
             mockTestName: newMockTestName,
-            questions : selectedQuestions
+            questions : selectedQuestions,
+            tags: selectedTags
         });
-        console.log('Selected Questions:', response.body);
+        console.log('Selected Questions:', response.data);
     };
 
-    const handleCourseSelection = (courseId) => {
-        if (courseId === 'new') {
-            setShowCreateCourseDialog(true);
+    const handleExamSelection = (examId) => {
+        if (examId === 'new') {
+            setShowCreateExamDialog(true);
         } else {
-            setCourseNameToAddMock(courseId);
-            setShowCreateCourseDialog(false);
+            setExamNameToAddMock(examId);
+            setShowCreateExamDialog(false);
         }
     };
 
-    const handleNewCourseNameChange = (e) => {
-        setNewCourseName(e.target.value);
+    const handleNewExamNameChange = (e) => {
+        setNewExamName(e.target.value);
     };
 
     const handleMockTestNameChange = (e) => {
         setNewMockTestName(e.target.value);
     };
 
-    const handleCreateCourse = async () => {
-        const response = await axios.post('http://localhost:3600/api/mock/courses/createCourse', {
-            courseName: newCourseName
+    const handleCreateExam = async () => {
+        const response = await axios.post('http://localhost:3600/api/mock/exams/createExam', {
+            examName: newExamName
         });
 
-        const newCourse = response.data.courseName;
-        setCoursesList([...coursesList, newCourse]);
-        setShowCreateCourseDialog(false);
+        const newExam = response.data.examName;
+        setExamsList([...examsList, newExam]);
+        setShowCreateExamDialog(false);
     };
 
     return (
@@ -110,22 +113,22 @@ const Mock = () => {
                     ))}
                 </ul>
             </div>
-            <h1 className="title">Select Course:</h1>
-            <select className="select-courses" onChange={(e) => handleCourseSelection(e.target.value)}>
-                <option value="">Select Course</option>
-                {coursesList.map(course => (
-                    <option key={course._id} value={course._id}>{course}</option>
+            <h1 className="title">Select Exam:</h1>
+            <select className="select-exams" onChange={(e) => handleExamSelection(e.target.value)}>
+                <option value="">Select Exam</option>
+                {examsList.map(exam => (
+                    <option key={exam._id} value={exam._id}>{exam}</option>
                 ))}
-                <option value="new">Create New Course</option>
+                <option value="new">Create New Exam</option>
             </select>
             <h1 className="title">Mock Test Name:</h1>
             <input type="text" value={newMockTestName} onChange={handleMockTestNameChange} />
             <button onClick={createMockTest} className="create-mock-button">Create Mock Test</button>
-            {showCreateCourseDialog && (
-                <div className="create-course-dialog">
-                    <input type="text" value={newCourseName} onChange={handleNewCourseNameChange} />
-                    <button onClick={handleCreateCourse}>Create</button>
-                    <button onClick={() => setShowCreateCourseDialog(false)}>Cancel</button>
+            {showCreateExamDialog && (
+                <div className="create-exam-dialog">
+                    <input type="text" value={newExamName} onChange={handleNewExamNameChange} />
+                    <button onClick={handleCreateExam}>Create</button>
+                    <button onClick={() => setShowCreateExamDialog(false)}>Cancel</button>
                 </div>
             )}
         </div>
