@@ -28,7 +28,7 @@ const QuizPage = () => {
   // Start the timer for each question
   useEffect(() => {
     let timer;
-    if (timeLeft > 0) {
+    if (timeLeft >= 0) {
       timer = setInterval(() => {
         setTimeLeft(prevTime => {
           if (prevTime === 0) {

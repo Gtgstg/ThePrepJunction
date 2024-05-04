@@ -19,6 +19,7 @@ const TagsAndExams = () => {
         async function fetchData() {
             const tagsResponse = await axios.get('http://localhost:3600/api/questions/getAllTags');
             const tags = tagsResponse.data.map(tag =>  tag.name);
+            console.log(tags);
             setTags(tags);
         }
         fetchData();
