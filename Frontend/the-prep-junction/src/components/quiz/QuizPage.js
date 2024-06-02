@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import { Card, CardContent, Typography } from '@mui/material';
 import { styled } from '@mui/system';
-import quizData from './QuizData'; // Import quiz data from JSON file or API
 import Quiz from './Quiz';
 
 const GradientCard = styled(Card)(({ theme }) => ({
@@ -12,18 +12,35 @@ const GradientCard = styled(Card)(({ theme }) => ({
 }));
 
 const QuizPage = () => {
-  const { id } = useParams();
+  const location = useLocation();
+  const ids = location.state;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0); // Time left for the current question
   const [quizFinished, setQuizFinished] = useState(false);
+  const [quizData, setQuizData] = useState([]);
 
   useEffect(() => {
-    if (currentQuestion < quizData[id].length) {
-      setTimeLeft(quizData[id][currentQuestion].timeLimit);
+    // Fetch quiz data when component mounts
+    const fetchQuizData = async () => {
+      try {
+        const response = await axios.post('http://localhost:3600/api/questions/getQuestionsByIds', { ids : ids });
+        setQuizData(response.data);
+        setTimeLeft(response.data[0].timeLimit);
+      } catch (error) {
+        console.error('Error fetching quiz data', error);
+      }
+    };
+
+    fetchQuizData();
+  }, [ids]);
+
+  useEffect(() => {
+    if (currentQuestion < quizData.length) {
+      setTimeLeft(quizData[currentQuestion].timeLimit);
     }
-  }, [currentQuestion, id]);
+  }, [currentQuestion, quizData]);
 
   // Start the timer for each question
   useEffect(() => {
@@ -42,16 +59,14 @@ const QuizPage = () => {
     }
     return () => clearInterval(timer);
   }, [timeLeft]);
-  useEffect(() => {
-  if (currentQuestion < quizData[id].length) {
-    setTimeLeft(quizData[id][currentQuestion].timeLimit);
-  }
-}, [currentQuestion, id]);
 
-  const handleAnswerSubmit = (questionId, answerId) => {
-    setUserAnswers({ ...userAnswers, [questionId]: answerId });
+  const handleAnswerSubmit = (questionIndex, optionIndex) => {
+    const question = quizData[currentQuestion];
+    const option = question.options[optionIndex];
+    setUserAnswers({ ...userAnswers, [questionIndex]: optionIndex });
+
     // Calculate score
-    if (quizData[id][currentQuestion].correctAnswerId === answerId) {
+    if (option.isCorrect) {
       setScore(score + 1);
     }
     // Move to next question
@@ -60,18 +75,15 @@ const QuizPage = () => {
 
   const moveToNextQuestion = () => {
     setCurrentQuestion(currentQuestion + 1);
-    if (currentQuestion < quizData[id].length - 1) {
-      setTimeLeft(quizData[id][currentQuestion + 1].timeLimit);
+    if (currentQuestion < quizData.length - 1) {
+      setTimeLeft(quizData[currentQuestion + 1].timeLimit);
     } else {
       handleQuizEnd(); // If it's the last question, end the quiz
     }
   };
 
   const handleTimeOut = () => {
-    // If time runs out, save the currently selected option (if any) and move to the next question
-    if (!userAnswers.hasOwnProperty(quizData[id][currentQuestion].id)) {
-      setUserAnswers({ ...userAnswers, [quizData[id][currentQuestion].id]: null });
-    }
+    // If time runs out, move to the next question
     moveToNextQuestion();
   };
 
@@ -85,7 +97,7 @@ const QuizPage = () => {
     <GradientCard>
       <CardContent style={styles.content}>
         <Typography variant="h5" component="div" gutterBottom>
-          Quiz Series {id}
+          Quiz Series
         </Typography>
         {quizFinished ? (
           <div>
@@ -97,13 +109,13 @@ const QuizPage = () => {
             </Typography>
           </div>
         ) : (
-          currentQuestion < quizData[id].length && (
+          currentQuestion < quizData.length && (
             <div>
               <Typography variant="h6" component="div" gutterBottom>
                 Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? '0' : ''}{timeLeft % 60}
               </Typography>
               <Quiz
-                question={quizData[id][currentQuestion]}
+                question={quizData[currentQuestion]}
                 onAnswerSubmit={handleAnswerSubmit}
               />
             </div>

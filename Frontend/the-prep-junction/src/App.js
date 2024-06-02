@@ -21,7 +21,9 @@ import Stream from './components/stream/Stream';
 import Questions from "./components/questions/questions";
 import Mock from "./components/mock/mock";
 import MainPage from "./components/main/adminMain";
-import UserSpecific from "./components/TagsAndCourses/TagsAndCourses";
+import UserSpecific from "./components/users/TagsAndCourses";
+import UserSpecificHomePage from "./components/users/UserHomePage";
+import UserExam from "./components/users/UserExam";
 
 const App = () => {
   return (
@@ -43,6 +45,8 @@ const App = () => {
           <Route path="/mock" element={<Mock />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/user/optcourse/:userId" element={<UserSpecific />} />
+          <Route path="/home/user/:userId" element={<UserSpecificHomePage />} />
+          <Route path="/exam/:userId" element={<UserExam />} />
         </Routes>
         <Footer />
       </div>

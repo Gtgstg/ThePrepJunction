@@ -75,12 +75,10 @@ exports.getAllExams = async (req, res) => {
 
 exports.getExamsBasedOnTags = async (req, res) => {
     const { tags } = req.body;
-    const tagDocs = await Tag.find({ name: { $in: tags } }).exec();
-    console.log(tagDocs)
+    const tagDocs = await Tag.find({ _id: { $in: tags } }).exec();
     const tagIds = tagDocs.map(tag => tag._id);
     try {
         const exams = await MockTest.find({ tags: { $in: tagIds } }).exec();
-        console.log(exams);
         res.json(exams);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching exam names by tags' });
