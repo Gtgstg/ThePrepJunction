@@ -18,13 +18,22 @@ router.get('/', async (req, res) => {
 // Route to get a specific user by ID
 router.get('/:id', async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    // Extract googleId from the request parameters
+    const googleId = req.params.id;
+
+    // Find the user by googleId
+    const user = await User.findOne({ googleId: googleId });
+
+    // Check if the user was found
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
+
+    // Respond with the user data
     res.json(user);
   } catch (error) {
-    console.error(error);
+    // Log the error and respond with a server error message
+    console.error('Server Error:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 });
@@ -45,14 +54,26 @@ router.post('/', async (req, res) => {
 // Route to update an existing user
 router.put('/:id', async (req, res) => {
   try {
-    const { username, email } = req.body;
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, { username, email }, { new: true });
+    const id = req.params.id; // Extract googleId from the request parameters
+    const tagIds = req.body.selectedTagIds; // Extract selectedTagIds from the request body
+
+    // Find the user by their googleId and update their tags
+    const updatedUser = await User.findOneAndUpdate(
+        { googleId: id }, // Search condition
+        { tags: tagIds }, // Update the user's tags
+        { new: true } // Return the updated user document
+    );
+
+    // Check if the user was found and updated
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
+
+    // Send the updated user as the response
     res.json(updatedUser);
   } catch (error) {
-    console.error(error);
+    // Log the error and send a server error response
+    console.error('Server Error:', error);
     res.status(500).json({ message: 'Server Error' });
   }
 });

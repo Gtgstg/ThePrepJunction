@@ -8,5 +8,6 @@ router.post('/add', QuestionController.addQuestion);
 router.put('/:id/options', QuestionController.addOptions);
 router.put('/:id/tags', QuestionController.addTags);
 router.post('/getQuestionsForTags', QuestionController.getQuestionsForTags);
+router.post('/getQuestionsByIds', QuestionController.getQuestionsByIds);
 
 module.exports = router;

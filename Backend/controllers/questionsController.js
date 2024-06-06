@@ -56,6 +56,17 @@ exports.getQuestionsForTags = async (req, res) => {
     res.status(200).json(questions);
 };
 
+exports.getQuestionsByIds = async (req, res) => {
+    const { ids } = req.body;
+    try {
+      const questions = await Question.find({ _id: { $in: ids } }).populate('tags');
+      res.json(questions);
+    } catch (error) {
+      console.error('Error fetching questions:', error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+
 exports.getAllTags = async (req, res) => {
     try {
         // Retrieve all tags from the Tag collection

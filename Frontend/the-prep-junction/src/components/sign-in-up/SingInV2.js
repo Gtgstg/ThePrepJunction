@@ -18,7 +18,7 @@ function SignInV2() {
                 password,
             });
             console.log(response.data.userId);
-            if(response.data.userId === "662243f86563e35ce594b047") {
+            if(response.data.userId === "66363a70094b02b4fdaa2fab") {
                 navigate('/main/');
             } else {
                 navigate('/user/optcourse/' + response.data.userId);

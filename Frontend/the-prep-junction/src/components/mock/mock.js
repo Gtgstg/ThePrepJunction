@@ -50,14 +50,24 @@ const Mock = () => {
     };
 
     const createMockTest = async () => {
-        // Implement logic to create a mock test using selected questions
-        const response = await axios.post('http://localhost:3600/api/mock/exams/addMock', {
-            examName: examNameToAddMock,
-            mockTestName: newMockTestName,
-            questions : selectedQuestions,
-            tags: selectedTags
-        });
-        console.log('Selected Questions:', response.data);
+        try {
+            // Implement logic to create a mock test using selected questions
+            const response = await axios.post('http://localhost:3600/api/mock/exams/addMock', {
+                examName: examNameToAddMock,
+                mockTestName: newMockTestName,
+                questions: selectedQuestions,
+                tags: selectedTags,
+            });
+            console.log('Selected Questions:', response.data);
+
+            // Reset selected tags, questions, and mock test name
+            setSelectedTags([]);
+            setSelectedQuestions([]);
+            setNewMockTestName('');
+            setExamNameToAddMock('');
+        } catch (error) {
+            console.error('Error creating mock test:', error);
+        }
     };
 
     const handleExamSelection = (examId) => {

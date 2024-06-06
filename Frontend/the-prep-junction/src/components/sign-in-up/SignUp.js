@@ -14,15 +14,17 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Send the display name (name), email, and password in the signup request
             const response = await axios.post('http://localhost:3600/api/sign/signup', {
                 name,
                 email,
                 password,
             });
             console.log(response.data);
+            // Navigate to the sign-in page upon successful signup
             navigate('/sign-in');
         } catch (error) {
-            console.error(error.response.data);
+            console.error(error.response ? error.response.data : error.message);
         }
     };
 
@@ -31,15 +33,33 @@ function Signup() {
             <h2 className="signup-title">Sign Up</h2>
             <label className="signup-label">
                 Name:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="signup-input" />
+                <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="signup-input"
+                    required
+                />
             </label>
             <label className="signup-label">
                 Email:
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="signup-input" />
+                <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="signup-input"
+                    required
+                />
             </label>
             <label className="signup-label2">
                 Password:
-                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="signup-input" />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="signup-input"
+                    required
+                />
             </label>
             <button type="submit" className="signup-button">Sign Up</button>
             <div className="signup-option">

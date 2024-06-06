@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const Sign = require('../models/Sign');
+const User = require('../models/User');
 
 router.post('/signup', async (req, res) => {
     try {
@@ -16,16 +17,26 @@ router.post('/signup', async (req, res) => {
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create new user
+        // Create new user in the Sign schema
         const newUser = new Sign({ name, email, password: hashedPassword });
-        await newUser.save();
+        const savedUser = await newUser.save();
 
-        res.json({ message: 'User created successfully' });
+        // Create a new user in the User schema using saved user's ID
+        const newUserData = {
+            googleId: savedUser._id, // Use saved user's ID as googleId
+            displayName: name,
+            email: email,
+        };
+        const newUserProfile = new User(newUserData);
+        await newUserProfile.save();
+
+        res.json({ message: 'User created successfully', userId: savedUser._id });
     } catch (error) {
         console.error('Error Signing up:', error);
         res.status(500).json({ error: 'Error Signing up' });
     }
 });
+
 
 router.post('/signin', async (req, res) => {
     try {
