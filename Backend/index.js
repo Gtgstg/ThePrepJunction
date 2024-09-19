@@ -18,7 +18,7 @@ const mockTestRoutes = require('./routes/mockTestRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 
 // Middleware setup (body parser, CORS, etc.)
-const mong = "mongodb+srv://thevishwajeet007:PrepJunction007@prepjunction.wlf2lna.mongodb.net/?retryWrites=true&w=majority&appName=PrepJunction";
+const mong = "mongodb+srv://thevishwajeet007:<db_password>@prepjunction.wlf2lna.mongodb.net/?retryWrites=true&w=majority&appName=PrepJunction";
 const mong_local = "mongodb://127.0.0.1/PrepJunction";
 // Connect to MongoDB
 mongoose.connect(mong,{
@@ -32,7 +32,7 @@ mongoose.connect(mong,{
 .then(db => console.log('DB is connected'))
 .catch(err => console.log(err));
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'http://13.126.195.239:3000',
 }));
 app.use(session({
   secret: 'your_session_secret',
@@ -60,6 +60,6 @@ app.use('/api/sign', signRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3600;
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
