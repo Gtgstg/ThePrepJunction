@@ -18,7 +18,7 @@ const mockTestRoutes = require('./routes/mockTestRoutes');
 const recommendationRoutes = require('./routes/recommendationRoutes');
 
 // Middleware setup (body parser, CORS, etc.)
-const mong = "mongodb+srv://thevishwajeet007:<db_password>@prepjunction.wlf2lna.mongodb.net/?retryWrites=true&w=majority&appName=PrepJunction";
+const mong = "mongodb+srv://thevishwajeet007:Prepjunction007@prepjunction.wlf2lna.mongodb.net/?retryWrites=true&w=majority&appName=PrepJunction";
 const mong_local = "mongodb://127.0.0.1/PrepJunction";
 // Connect to MongoDB
 mongoose.connect(mong,{
