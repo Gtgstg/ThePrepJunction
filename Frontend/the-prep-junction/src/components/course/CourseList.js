@@ -6,7 +6,7 @@ const CourseList = () => {
 
   useEffect(() => {
     // Fetch courses from API (replace with actual API call)
-    axios.get('http://13.126.195.239:3600/api/courses').then((response) => setCourses(response.data));
+    axios.get('http://15.207.223.154:3600/api/courses').then((response) => setCourses(response.data));
   }, []);
 
   return (

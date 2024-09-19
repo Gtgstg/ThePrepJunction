@@ -25,7 +25,7 @@ const QuizPage = () => {
     // Fetch quiz data when component mounts
     const fetchQuizData = async () => {
       try {
-        const response = await axios.post('http://13.126.195.239:3600/api/questions/getQuestionsByIds', { ids : ids });
+        const response = await axios.post('http://15.207.223.154:3600/api/questions/getQuestionsByIds', { ids : ids });
         setQuizData(response.data);
         setTimeLeft(response.data[0].timeLimit);
       } catch (error) {

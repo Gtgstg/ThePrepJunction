@@ -21,7 +21,7 @@ const CourseForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://13.126.195.239:3600/api/courses', formData);
+      const response = await axios.post('http://15.207.223.154:3600/api/courses', formData);
       console.log(response.data);
       // Optionally, reset the form after successful submission
       setFormData({

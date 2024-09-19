@@ -50,7 +50,7 @@ const Questions = () => {
             //formData.append('file', uploadedFile);
         }
         try {
-                // await axios.post('http://13.126.195.239:3600/api/video/upload', uploadedFile, {
+                // await axios.post('http://15.207.223.154:3600/api/video/upload', uploadedFile, {
                 //     headers: {
                 //         'Content-Type': 'multipart/form-data'
                 //     }
@@ -59,7 +59,7 @@ const Questions = () => {
         } catch (error) {
             console.error('Error uploading video:', error);
         }
-        const response = await axios.post('http://13.126.195.239:3600/api/questions/add', {
+        const response = await axios.post('http://15.207.223.154:3600/api/questions/add', {
             question,
             format,
             options,

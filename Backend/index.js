@@ -32,7 +32,7 @@ mongoose.connect(mong,{
 .then(db => console.log('DB is connected'))
 .catch(err => console.log(err));
 app.use(cors({
-  origin: 'http://13.126.195.239:3000',
+  origin: 'http://15.207.223.154:3000',
 }));
 app.use(session({
   secret: 'your_session_secret',

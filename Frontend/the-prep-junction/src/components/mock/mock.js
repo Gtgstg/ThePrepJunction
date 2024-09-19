@@ -15,10 +15,10 @@ const Mock = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const tagsResponse = await axios.get('http://13.126.195.239:3600/api/questions/getAllTags');
+            const tagsResponse = await axios.get('http://15.207.223.154:3600/api/questions/getAllTags');
             const tags  = tagsResponse.data.map(tag => tag.name);
             setTagList(tags);
-            const examsResponse = await axios.get('http://13.126.195.239:3600/api/mock/exams/getAllExams');
+            const examsResponse = await axios.get('http://15.207.223.154:3600/api/mock/exams/getAllExams');
             setExamsList(examsResponse.data);
             console.log(examsList);
         }
@@ -28,7 +28,7 @@ const Mock = () => {
     useEffect(() => {
         async function fetchQuestions() {
             if (selectedTags.length > 0) {
-                const questionResponse = await axios.post('http://13.126.195.239:3600/api/questions/getQuestionsForTags', {
+                const questionResponse = await axios.post('http://15.207.223.154:3600/api/questions/getQuestionsForTags', {
                     tags: selectedTags
                 });
                 console.log(questionResponse.data);
@@ -52,7 +52,7 @@ const Mock = () => {
     const createMockTest = async () => {
         try {
             // Implement logic to create a mock test using selected questions
-            const response = await axios.post('http://13.126.195.239:3600/api/mock/exams/addMock', {
+            const response = await axios.post('http://15.207.223.154:3600/api/mock/exams/addMock', {
                 examName: examNameToAddMock,
                 mockTestName: newMockTestName,
                 questions: selectedQuestions,
@@ -88,7 +88,7 @@ const Mock = () => {
     };
 
     const handleCreateExam = async () => {
-        const response = await axios.post('http://13.126.195.239:3600/api/mock/exams/createExam', {
+        const response = await axios.post('http://15.207.223.154:3600/api/mock/exams/createExam', {
             examName: newExamName
         });
 

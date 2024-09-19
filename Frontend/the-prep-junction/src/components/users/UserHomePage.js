@@ -22,10 +22,10 @@ const UserHomePage = () => {
         async function fetchUserData() {
             try {
                 // Fetch user info (replace with your actual API endpoint)
-                const userInfoResponse = await axios.get('http://13.126.195.239:3600/api/users/' + userId);
+                const userInfoResponse = await axios.get('http://15.207.223.154:3600/api/users/' + userId);
                 setUserInfo(userInfoResponse.data);
                 // Fetch upcoming exams (replace with your actual API endpoint)
-                const examsResponse = await axios.post('http://13.126.195.239:3600/api/mock/exams/getExamsBasedOnTags', {
+                const examsResponse = await axios.post('http://15.207.223.154:3600/api/mock/exams/getExamsBasedOnTags', {
                     tags : userInfoResponse.data.tags,
                 });
                 setUpcomingExams(examsResponse.data);
