@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://your-backend-api-url'; // Replace with your actual backend API URL
+const API_BASE_URL = 'http://13.126.195.239:3600'; // Replace with your actual backend API URL
 
 const examApi = axios.create({
   baseURL: API_BASE_URL,

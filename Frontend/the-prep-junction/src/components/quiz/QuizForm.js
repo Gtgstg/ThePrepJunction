@@ -53,7 +53,7 @@ const QuizForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3600/api/quizs', formData); // Assuming the API endpoint for quizzes is '/api/quizzes'
+      const response = await axios.post('http://13.126.195.239:3600/api/quizs', formData); // Assuming the API endpoint for quizzes is '/api/quizzes'
       console.log(response.data);
       // Optionally, reset the form after successful submission
       setFormData({

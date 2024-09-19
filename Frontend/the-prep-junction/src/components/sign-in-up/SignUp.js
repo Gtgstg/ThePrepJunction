@@ -15,7 +15,7 @@ function Signup() {
         e.preventDefault();
         try {
             // Send the display name (name), email, and password in the signup request
-            const response = await axios.post('http://localhost:3600/api/sign/signup', {
+            const response = await axios.post('http://13.126.195.239:3600/api/sign/signup', {
                 name,
                 email,
                 password,

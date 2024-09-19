@@ -51,7 +51,7 @@ function CourseDetailPage() {
 
   useEffect(() => {
     // Fetch courses from API
-    axios.get('http://localhost:3600/api/courses')
+    axios.get('http://13.126.195.239:3600/api/courses')
       .then((response) => {
         setVideoList(response.data);
         setLoading(false); // Update loading state

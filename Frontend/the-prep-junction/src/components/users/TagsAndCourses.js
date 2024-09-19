@@ -15,7 +15,7 @@ const TagsAndExams = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const tagsResponse = await axios.get('http://localhost:3600/api/questions/getAllTags');
+            const tagsResponse = await axios.get('http://13.126.195.239:3600/api/questions/getAllTags');
             const tags = tagsResponse.data;
             setTags(tags);
         }
@@ -36,7 +36,7 @@ const TagsAndExams = () => {
     // Function to update the user's tags in the database and navigate to home
     async function enrollSelectedTags() {
         try {
-            const response = await axios.put(`http://localhost:3600/api/users/${userId}`, {
+            const response = await axios.put(`http://13.126.195.239:3600/api/users/${userId}`, {
                 selectedTagIds
             });
             console.log("Response from server:", response.data);

@@ -13,7 +13,7 @@ function SignInV2() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3600/api/sign/signin', {
+            const response = await axios.post('http://13.126.195.239:3600/api/sign/signin', {
                 email,
                 password,
             });
